@@ -40,8 +40,7 @@ def parallel():
 
 @app.route("/chords")
 def chords():
-    iframe = 'chord_01.html'
-    return render_template("chords.html", iframe=iframe)
+    return render_template("chords.html")
 
 @app.route("/tableau")
 def tableau():

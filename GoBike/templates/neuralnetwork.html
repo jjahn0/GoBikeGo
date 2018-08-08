@@ -53,9 +53,6 @@
             margin: 20;
             padding: 20;
         }
-        body {
-            overflow: scroll;
-        }
         .imgbox {
             display: grid;
             height: 100%;
@@ -67,10 +64,68 @@
         }
         </style>
         <div class="row">
+            <div style="padding:50px; text-align:left"><h2>Neural Networks applied to bike sharing usage forecasting</h2></div>
+            <div style="padding:50px; text-align:left">
+                <p>Used to predict bike usage in San Francisco on a per hour basis.</p><br>
+                <p style="color:darkblue">Pre-analysis data visualization</p>
+                <p>Correlation analysis between all the variables:</p>
+            </div>
+            <div class="col-md-12" style="padding:50px">
+                    <div id="intro" class="imgbox">
+                        <img class="center-fit" src="static/images/correlation_analysis.png">
+                    </div>
+            </div>
             <div class="col-md-12" style="padding:50px">
                 <div id="intro" class="imgbox">
-                    <img class="center-fit" src="static/images/intro.jpg">
+                    <img class="center-fit" src="static/images/Prediction_VS_Data_4weeksTraining_1weekPrediction_weekdayNotHotEncoded.png">
                 </div>
+            </div>
+            <div class="col-md-6" style="padding:50px">
+                    <div id="intro" class="imgbox">
+                        <img class="center-fit" src="static/images/hour_vs_usage_temp_ranges.png">
+                    </div>
+            </div>
+            <div class="col-md-6" style="padding:50px">
+                    <div id="intro" class="imgbox">
+                        <img class="center-fit" src="static/images/hour_vs_usage_wkday_wkend.png">
+                    </div>
+            </div>
+            <div style="padding:50px; text-align:left">
+                    <p style="color:darkblue">Neural Network details:</p>
+                    <p>Data was converted from a time series (each row represents a date with a periodicity of one hour) into a supervised learning problem, where each row (observation) included the values for the previous observation. After that, a neural network with a hidden LSTM (Long Short Term Memory) layer was used to build the model from the training data. LSTMs are a type of Recurrent Neural Network. This is a useful approach to time series forecasting with multiple variables (pressure, temperature, etc. in our case).</p>
+                    <br>
+                    <p style="color:darkblue">Notes:</p>
+                    <ul>
+                        <li>Data cleaning was vital for good results</li>
+                        <li>For instance, added average values for pressure and temperature for missing values and remove rows with duplicated indexes (important since these are timestamps)</li>
+                        <li>For simplicity, weather was categorized into rain/no rain</li>
+                        <li>An integer for the day of the week was added to the dataset</li>
+                    </ul>
+                    <br>
+                    <p style="color:darkblue">Possible improvements:</p>
+                    <ul>
+                        <li>Further neural network tuning (nodes, layers, batches, etc.)</li>
+                        <li>Fill missing rows (timestamps missing)</li>
+                        <li>OneHot Encode for the day of the week, instead of using integers</li>
+                        <li>We are not considering seasonality, day (of the week), hour. This could be addressed with <u>Seasonal Adjustment</u>, or Deseasonalizing.</li>
+                    </ul>
+                    <br>
+                    <p style="color:darkblue">TEST RESULTS</p>
+                    <p>4 weeks of training data</p>
+                    <p>1 week of test and validation data</p>
+                    <p>4 Inputs (per hour):</p>
+                    <ul>
+                        <li>Weekday (integer)</li>
+                        <li>Pressure</li>
+                        <li>Rain (yes/no)</li>
+                        <li>Temperature</li>
+                    </ul>
+                    <p>1 Output:</p>
+                    <ul>
+                        <li>Bike Usage Count (per hour)</li>
+                    </ul>
+                    <br>
+                    <h2>Test RMSE: 140.354</h2>
             </div>
         </div>
         
@@ -95,5 +150,14 @@
 <script type="text/javascript">
     var hello = "hello";
 </script>
+<style>
+    body {
+        overflow: scroll;
+    }
+
+    #row {
+        align-content: initial;
+    }
+</style>
 </body>
 </html>
