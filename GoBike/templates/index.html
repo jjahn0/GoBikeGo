@@ -22,7 +22,7 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                        <a class="navbar-brand" href="/">Ford GoBike: data visualization, analysis, and machine learning</a>
+                        <a class="navbar-brand" href="/"><img src="/static/images/Ford_GoBike_logo.png" width=150px>Data Visualization and Analysis</a>
                 </div>
                 <div class="collapse navbar-collapse" id="myNavbar-1">
                     <ul class="nav navbar-nav navbar-right">
@@ -67,7 +67,17 @@
         }
         </style>
         <div class="row">
-            <div class="col-md-12" style="padding:50px">
+            <div id="menu" class="col-md-2" style="padding:50px; text-align:left">
+                <div class="vertical-menu">
+                        <a href="#" class="active">Home</a>
+                        <a href="/tableau">Tableau Data Visualization</a>
+                        <a href="/chords">Chord flow Diagram</a>
+                        <a href="/parallel">Parallel Coordinate Diagram</a>
+                        <a href="/sklearn">Regression models</a>
+                        <a href="/NeuralNetwork">Neural Network computing</a>
+                </div>
+            </div>
+            <div class="col-md-10" style="padding:50px">
                 <div id="intro" class="imgbox">
                     <img class="center-fit" src="static/images/intro.jpg">
                 </div>
@@ -95,5 +105,28 @@
 <script type="text/javascript">
     var hello = "hello";
 </script>
+<style>
+    .vertical-menu {
+    width: 200px; /* Set a width if you like */
+}
+
+.vertical-menu a {
+    background-color: #eee; /* Grey background color */
+    color: black; /* Black text color */
+    display: block; /* Make the links appear below each other */
+    padding: 12px; /* Add some padding */
+    text-decoration: none; /* Remove underline from links */
+}
+
+.vertical-menu a:hover {
+    background-color: #ccc; /* Dark grey background on mouse-over */
+}
+
+.vertical-menu a.active {
+    background-color: rgb(109, 204, 199);
+    color: white;
+}
+}
+</style>
 </body>
 </html>

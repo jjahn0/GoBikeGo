@@ -32,7 +32,7 @@ def process():
 
 @app.route("/data")
 def data():
-    return render_template("process.html")
+    return render_template("data.html")
 
 @app.route("/parallel")
 def parallel():
@@ -48,7 +48,7 @@ def tableau():
 
 @app.route("/sklearn")
 def sklearn():
-    return render_template("tableau.html")
+    return render_template("sklearn.html")
 
 @app.route("/NeuralNetwork")
 def NeuralNetwork():
