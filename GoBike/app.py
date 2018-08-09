@@ -30,6 +30,10 @@ def home():
 def process():
     return render_template("process.html")
 
+@app.route("/summary")
+def summary():
+    return render_template("summary.html")
+
 @app.route("/data")
 def data():
     return render_template("data.html")
