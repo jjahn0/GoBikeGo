@@ -227,7 +227,7 @@ var middleTextTop = textCenter.append("text")
 	.attr("y", -24*10/2 + "px")
 	.attr("dy", "1em")
 	.attr("opacity", 1)
-	.text("Ridership data provided by Bay Area Motivate, LLC, operators of Ford GoBike in the Bay Area, was used to correlate a ridership pattern.")
+	.text("Ridership data provided by Bay Area Motivate, LLC, operators of Ford GoBike in the Bay Area")
 	.call(wrap, 350);
 
 /*Starting text middle bottom*/
@@ -372,7 +372,7 @@ function Draw3(){
 	/*First disable click event on clicker button*/
 	stopClicker();
 
-	var arcDelay = [0,1,2,3,4,9,16,20,24,28,30,31,32,33,34,35,36,37,38,39,40,41,42,43,47,48,49,50,51,52,55];
+	var arcDelay = [0,1,1.5,2,4,9,16,20,24,28,30,31,32,33,34,35,36,37,38,39,40,41,42,43,47,48,49,50,51,52,55];
 	/*Show and run the progressBar*/
 	runProgressBar(time=700*(arcDelay[(arcDelay.length-1)]+1));	
 		
@@ -421,6 +421,9 @@ function Draw3(){
 	/*Sony*/
 	changeTopText(newText = "Embarcadero 7.028%",
 		loc = 2/2, delayDisappear = (arcDelay[9]-1), delayAppear = (arcDelay[9]));
+	/*Sony*/
+	changeTopText(newText = "Mission Bay 12.1%",
+		loc = 2/2, delayDisappear = (arcDelay[23]-1), delayAppear = (arcDelay[23]));
 	/*100%*/
 	changeTopText(newText = "Together that sums up to 100%",
 		loc = 1/2, delayDisappear = (arcDelay[29]-1), delayAppear = arcDelay[29]);		
@@ -430,8 +433,8 @@ function Draw3(){
 	
 	/*Change the text of the bottom section inside the circle accordingly*/
 	/*Other*/
-	changeBottomText(newText = "These neighborhoods combined for...",
-		loc = 1/2, delayDisappear = (arcDelay[7]), delayAppear = (arcDelay[10]-1), yloc=-20);	
+	changeBottomText(newText = "These four neighborhoods, SOMA, Mission Bay, Mission District, and Embarcadero, combined accounted for more than half the total outgoing bikes",
+		loc = 1/2, delayDisappear = (arcDelay[23]), delayAppear = (arcDelay[23]-1), yloc=-20);	
 	/*Chord intro*/
 	changeBottomText(newText = "Now we're going to look at how these GoBike flowed from one neighborhood to another neighborhood",
 		loc = 1/2, delayDisappear = (arcDelay[29]-1), delayAppear = arcDelay[30]);	
@@ -503,8 +506,8 @@ function Draw5(){
 		.transition().duration(1000)
 		.style("opacity", opacityValue);		
 
-	/*Show only the Samsung Nokia part at Samsung*/
-	var arcSamsung = d3.svg.arc()
+	/*Show only the SOMA SPark part at SOMA*/
+	var arcSOMA = d3.svg.arc()
 				.innerRadius(innerRadius)
 				.outerRadius(outerRadius)
 				.startAngle(0.5510082626337902)
@@ -512,7 +515,7 @@ function Draw5(){
 				
 	svg.append("path")
 		.attr("class","SouthofMarkettoSouthPark")
-		.attr("d", arcSamsung)
+		.attr("d", arcSOMA)
 		.attr("fill", colors[5])
 		.style('stroke', colors[5]);
 		
@@ -546,7 +549,7 @@ function Draw6(){
 		loc = 1/2, delayDisappear = 0, delayAppear = 1, finalText = true);
 
 	/*Show only the Samsung Nokia part at Nokia*/
-	var arcNokia = d3.svg.arc()
+	var arcSPark = d3.svg.arc()
 				.innerRadius(innerRadius)
 				.outerRadius(outerRadius)
 				.startAngle(5.650816067671451)
@@ -554,7 +557,7 @@ function Draw6(){
 
 	svg.append("path")
 		.attr("class","SouthParktoSouthofMarket")
-		.attr("d", arcNokia)
+		.attr("d", arcSPark)
 		.attr("opacity", 0)
 		.attr("fill", colors[25])
 		.transition().duration(700)
@@ -634,9 +637,9 @@ function Draw9(){
 	/*Samsung Loyal text*/
 	changeTopText(newText = "There are also GoBike users that stay within their given neighborhood",
 		loc = 4/2, delayDisappear = 0, delayAppear = 1, finalText = false, xloc=50, w=300);
-	changeTopText(newText = "These short distance riders are represented by the hills at each brand",
+	changeTopText(newText = "These short distance riders are represented by the hills at each neighborhood",
 		loc = 3/2, delayDisappear = 9, delayAppear = 10, finalText = false, xloc=50, w=300);
-	changeTopText(newText = "You can also envision this as a chord beginning and ending on itself",
+	changeTopText(newText = "Basically a chord beginning and ending on itself",
 		loc = 2/2, delayDisappear = 18, delayAppear = 19, finalText = true, xloc=50, w=300);
 		
 	/*Remove the arcs*/
@@ -712,59 +715,63 @@ function Draw10(){
 	/*Show and run the progressBar*/
 	runProgressBar(time=700*11);
 	
-	changeTopText(newText = "10% of respondents have a Nokia right now, but also used to own a Nokia before that",
+	changeTopText(newText = "1.741% of Embarcadero riders is the highest range of riders who stay put",
 		loc = 7/2, delayDisappear = 0, delayAppear = 1);
-		changeTopText(newText = "Seeing that currently Nokia is owned by almost 16% of respondents, this means "+ 
-								"that about 2/3 of current Nokia owners are people who stayed loyal",
+		changeTopText(newText = "That is nearly 25% of GoBike users who start from Embarcadero do not leave the area",
 		loc = 7/2, delayDisappear = 9, delayAppear = 10, finalText = true);
 		
 	/*Show only the Nokia Loyal arc*/
 	var arcEmbarcadero = d3.svg.arc()
 				.innerRadius(innerRadius)
 				.outerRadius(outerRadius)
-				.startAngle(2.948671976860533)
-				.endAngle(2.9994216777820063);
+				.startAngle(2.888671976860533)
+				.endAngle(2.9794216777820063);
 
 	svg.append("path")
 		.attr("class","arcEmbarcadero")
 		.attr("d", arcEmbarcadero)
 		.attr("opacity", 1)
-		.attr("stroke", colors[10])
-		.attr("fill", colors[10]);	
+		.attr("stroke", colors[9])
+		.attr("fill", colors[9]);	
 
 	/*Repeatedly let an arc change colour*/		
 	repeat();
 	
+	d3.selectAll(".arcEmbarcadero")
+		.transition().duration(700)
+		.attr("fill", colors[5])
+		.style("stroke", colors[5]);
+
 	function repeat() {
 		d3.selectAll(".arcEmbarcadero")
 			.transition().duration(700)
 			.attr("fill", "#99D2E9")
 			.style('stroke', "#99D2E9")
 			.transition().duration(700)
-			.attr("fill", colors[10])
-			.style("stroke", colors[10])
+			.attr("fill", colors[9])
+			.style("stroke", colors[9])
 			.each("end", repeat);
 	};
 	
 	/*Show only the Nokia loyal chord*/
 	chords.transition().duration(2000)
 		.attr("opacity", function(d, i) { 
-			if(d.source.index == 10 && d.target.index == 10) {return opacityValueBase;}
+			if(d.source.index == 9 && d.target.index == 9) {return opacityValueBase;}
 			else {return 0;}
 		});
 
 	/*Make the other strokes less visible*/
 	d3.selectAll("g.group").selectAll("line")
 		.transition().duration(700)
-		.style("stroke",function(d,i,j) {if (j == 10) {return "#000";} else {return "#DBDBDB";}});
+		.style("stroke",function(d,i,j) {if (j == 9) {return "#000";} else {return "#DBDBDB";}});
 	/*Same for the %'s*/
 	svg.selectAll("g.group")
 		.transition().duration(700)
-		.selectAll(".tickLabels").style("opacity",function(d,i,j) {if (j == 10) {return 1;} else {return opacityValue;}});
+		.selectAll(".tickLabels").style("opacity",function(d,i,j) {if (j == 9) {return 1;} else {return opacityValue;}});
 	/*And the Names of each Arc*/	
 	svg.selectAll("g.group")
 		.transition().duration(700)
-		.selectAll(".titles").style("opacity", function(d) { if(d.index == 10) {return 1;} else {return opacityValue;}});
+		.selectAll(".titles").style("opacity", function(d) { if(d.index == 9) {return 1;} else {return opacityValue;}});
 
 };/*Draw10*/
 
@@ -778,43 +785,42 @@ function Draw11(){
 	/*Show and run the progressBar*/
 	runProgressBar(time=700*2);	
 	
-	changeTopText(newText = "Here are all the chords for those respondents that currently own "+ 
-							"an iPhone or that used to own an iPhone",
-		loc = 3/2, delayDisappear = 0, delayAppear = 1, finalText = true, xloc=-80, w=200);
+	changeTopText(newText = "Here are all the chords showing the influx of riders to South Park",
+		loc = 3/2, delayDisappear = 0, delayAppear = 1, finalText = true, xloc=80, w=200);
 		
-	/*Remove the Nokia arc*/
-	d3.selectAll(".NokiaLoyalArc")
+	/*Remove the SouthPark Arc*/
+	d3.selectAll(".SouthParkArc")
 		.transition().duration(1000)
 		.attr("opacity", 0)
-		.each("end", function() {d3.selectAll(".NokiaLoyalArc").remove();});
+		.each("end", function() {d3.selectAll(".SouthParkArc").remove();});
 			
-	/*Only show the chords of Apple*/
+	/*Only show the chords of South Park*/
 	chords.transition().duration(2000)
     .attr("opacity", function(d, i) { 
-		if(d.source.index == 0 || d.target.index == 0) {return opacityValueBase;}
+		if(d.source.index == 25 || d.target.index == 25) {return opacityValueBase;}
 		else {return 0;}
 	});
 
-	/*Highlight arc of Apple*/
+	/*Highlight arc of South Park*/
 	svg.selectAll("g.group").select("path")
 		.transition().duration(2000)
 		.style("opacity", function(d) {
-			if(d.index != 0) {return opacityValue;}
+			if(d.index != 25) {return opacityValue;}
 		});	
 		
-	/*Show only the ticks and text at Apple*/
+	/*Show only the ticks and text at South Park*/
 	/*Make the other strokes less visible*/
 	d3.selectAll("g.group").selectAll("line")
 		.transition().duration(700)
-		.style("stroke",function(d,i,j) {if (j == 0) {return "#000";} else {return "#DBDBDB";}});
+		.style("stroke",function(d,i,j) {if (j == 25) {return "#000";} else {return "#DBDBDB";}});
 	/*Same for the %'s*/
 	svg.selectAll("g.group")
 		.transition().duration(700)
-		.selectAll(".tickLabels").style("opacity",function(d,i,j) {if (j == 0) {return 1;} else {return opacityValue;}});
+		.selectAll(".tickLabels").style("opacity",function(d,i,j) {if (j == 25) {return 1;} else {return opacityValue;}});
 	/*And the Names of each Arc*/	
 	svg.selectAll("g.group")
 		.transition().duration(700)
-		.selectAll(".titles").style("opacity", function(d) { if(d.index == 0) {return 1;} else {return opacityValue;}});
+		.selectAll(".titles").style("opacity", function(d) { if(d.index == 25) {return 1;} else {return opacityValue;}});
 
 };/*Draw11*/
 
@@ -825,12 +831,11 @@ function Draw12(){
 	/*Show and run the progressBar*/
 	runProgressBar(time=700*11);	
 
-	changeTopText(newText = "One thing that stands out for Apple is that all chords connected to " +
-							"Apple are the color of the Apple arc: grey",
-		loc = 3/2, delayDisappear = 0, delayAppear = 1, finalText = false, xloc=-80, w=210);
-	changeTopText(newText = "This means that Apple has always had the net gain. " + 
-							"They received more customers from other brands than they lost to them",
-		loc = 3/2, delayDisappear = 9, delayAppear = 10, finalText = true, xloc=-80, w=210);
+	changeTopText(newText = "A unique aspect of South Park is the clear disparity between inbound and outbound GoBike riders: all chords leading to South Park are different",
+		loc = 3/2, delayDisappear = 0, delayAppear = 1, finalText = false, xloc=80, w=300);
+	changeTopText(newText = "South Park has the highest influx of bikes. " + 
+							"And becomes a major location for re-distribution of GoBikes",
+		loc = 3/2, delayDisappear = 9, delayAppear = 10, finalText = true, xloc=80, w=300);
 
 };/*Draw12*/
   
@@ -842,10 +847,10 @@ function Draw13(){
 	/*Show and run the progressBar*/
 	runProgressBar(time=700*11);	
 
-	changeTopText(newText = "Even more so, apart from the chord to Samsung, all other chords are extremely narrow at the other end from Apple",
-		loc = 3/2, delayDisappear = 0, delayAppear = 1, finalText = false, xloc=-80, w=200);
-	changeTopText(newText = "This means that Apple has lost virtually nobody to any other brand",
-		loc = 3/2, delayDisappear = 9, delayAppear = 10, finalText = true, xloc=-80, w=200);	
+	changeTopText(newText = "The disparity is obvious, especially for chords representing inbound bike flow from the Mission districts and SOMA",
+		loc = 3/2, delayDisappear = 0, delayAppear = 1, finalText = false, xloc=-80, w=300);
+	changeTopText(newText = "This means South Park is always well supplied on outbound bikes",
+		loc = 3/2, delayDisappear = 9, delayAppear = 10, finalText = true, xloc=-80, w=300);	
 	
 	/*Repeatedly let specific chords change colour*/
 	repeat();
@@ -854,14 +859,14 @@ function Draw13(){
 		chords
 			.transition().duration(1000)
 			.style("opacity",function (d){
-				if(d.source.index == 0) {
-					if(d.target.index == 0 || d.target.index == 5) {return opacityValueBase;}
+				if(d.source.index == 25) {
+					if(d.target.index == 25 || d.target.index == 5) {return opacityValueBase;}
 					else {return 0.2;}
 				} else {return 0;}
 			})
 			.transition().duration(1000)
 			.style("opacity",function (d){
-				if(d.source.index == 0) {return opacityValueBase;}
+				if(d.source.index == 5) {return opacityValueBase;}
 				else {return 0;}
 			})
 			.each("end", repeat);
@@ -876,14 +881,9 @@ function Draw14(){
 	/*Show and run the progressBar*/
 	/*runProgressBar(time=700*2);*/
 
-	changeTopText(newText = "Thank you for staying with me so far! After these examples I think you're absolutely " + 
-							"ready to face the full impact of all chords simultaneously",
-		loc = 8/2, delayDisappear = 0, delayAppear = 1, finalText = true);
-		
-	changeBottomText(newText = "I'm looking forward to hearing about the insights that you have discovered on your own",
-		loc = 3/2, delayDisappear = 0, delayAppear = 1);		
+	changeTopText(newText = "Thank you for staying with me so far!",
+		loc = 8/2, delayDisappear = 0, delayAppear = 1, finalText = true);		
 	
-	/*Only show the chords of Apple*/
 	chords.transition().duration(1000)
 		.style("opacity", 0.1);
 

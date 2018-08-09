@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Analysis of Data Analyst Jobs</title>
+  <link rel="stylesheet" href="/static/css/style.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://bootswatch.com/3/paper/bootstrap.min.css">
+</head>
+
+<body>
+    <div class="container-fluid">
+        <nav class="navbar navbar-default">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#myNavbar-1" aria-exanded="false">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="/"><img src="/static/images/Ford_GoBike_logo.png" width=150px>Data Visualization and Analysis</a>
+                </div>
+                <div class="collapse navbar-collapse" id="myNavbar-1">
+                    <ul class="nav navbar-nav navbar-right">
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                                Menu<span class="caret"></span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a href="/chords">D3 chord diagram</a></li>
+                                <li><a href="/parallel">parallel coordinate diagram</a></li>
+                                <li><a href="/tableau">tableau summary</a></li>
+                                <li><a href="/sklearn">sklearn machine learning</a></li>
+                                <li><a href="/NeuralNetwork">neural network predictive model</a></li>
+                                <li role="separator" class="divider"></li>
+                                <li><a href="/data">data</a></li>
+                            </ul>
+                        </li>
+                        
+                        <li><a href="/process">process</a></li>
+                        <li><a href="/summary">summary</a></li>
+
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <style>
+        * {
+            margin: 20;
+            padding: 20;
+        }
+        .imgbox {
+            display: grid;
+            height: 100%;
+        }
+        .center-fit {
+            max-width: 100%;
+            max-height: 100vh;
+            margin: auto;
+        }
+        </style>
+        <div class="row">
+            <div id="menu" class="col-md-2" style="padding:50px; text-align:left">
+                <div class="vertical-menu">
+                        <a href="/">Home</a>
+                        <a href="/tableau">Tableau Data Visualization</a>
+                        <a href="/chords">Chord flow Diagram</a>
+                        <a href="/parallel">Parallel Coordinate Diagram</a>
+                        <a href="#" class="active">Regression models</a>
+                        <a href="/NeuralNetwork">Neural Network computing</a>
+                </div>
+            </div>
+            <div id="menu" class="col-md-10" style="padding:50px; text-align:left">
+                <div style="padding:50px"><h2>Station specific regression model analysis</h2></div>
+                <div style="padding:50px">
+                    <p style="color:darkblue">Data Info</p>
+                    <p>We selected one of the busiest bike stations in San Francisco in order to achieve detail analysis. Utilizing machine learning, we predict the hourly usage of bikes in a day including arriving and leaving from one station.  Place: Embarcadero BART Station (Beale St at Market St) Data amount: 37,919 usages for one year (2017-July to 2018-July)</p>
+                    <br>
+                    <p style="color:darkblue">Model: <i>Kernel Ridge Regression</i></p>
+                    <p>It learns the linear function from the data and create a prediction using the variables earned in exhaustive search utilizing GridSearchCV.</p>
+                    <br>
+                    <p style="color:darkblue">Analysis</p>
+                    <ul>
+                        <li>RMSE: 26.98</li>
+                        <li>R-squared: 0.91</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="row" >
+            <div class="col-md-2"></div>
+            <div class="col-md-10" style="padding:50px; text-align:left">
+                <div id="intro" class="imgbox">
+                    <img class="center-fit" src="static/images/hourly_riders_at_embarcadero.png" width="900px">
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-2"></div>
+                <div class="col-md-10" style="padding:50px; text-align:left">
+                    <ul>
+                        <li>The peak hour lasts extremely long with 12 hours where the number of bikers constantly exceeds 40 which start from 7 AM to 7 PM.</li>
+                        <li></li>
+                        <li>Similar number of usages are seen in the combination of time zone in the morning and the evening:
+                            <ul>
+                                <li>6 AM & 9 PM  – appx. 35 riders</li>
+                                <li>5 AM & 10 PM – appx. 25 riders</li>
+                                <li>4 AM & 11 PM – appx. 15 riders</li>
+                            </ul>
+                        </li>
+                        <li>The smallest number of riders is seen at 3 AM </li>
+                        <li>The biggest number of riders is seen at 4 PM </li>
+                        <li>Changes of the number of riders in the evening after the peak time zone is slightly slower than the changes in the morning before the peak time zone.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <div class="container-fluid">
+                    <div class="col-md-12">
+                        <div class="authorline">
+                            <p>
+                                Jonathan Ahn, Paco Rosas, Takako Omori, Olivier Brouard  | Bootcamp UCB Data Analytics 2018 |
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.7.3/d3.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script src="http://netdna.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="http://www.numericjs.com/lib/numeric-1.2.6.js"></script>
+<script type="text/javascript">
+    var hello = "hello";
+</script>
+<style>
+    body {
+        overflow: scroll;
+    }
+
+    #row {
+        align-content: initial;
+    }
+    .vertical-menu {
+    width: 200px; /* Set a width if you like */
+}
+* {
+            margin: 20;
+            padding: 20;
+        }
+        .imgbox {
+            display: grid;
+            height: 100%;
+        }
+        .center-fit {
+            max-width: 100%;
+            max-height: 100vh;
+            margin: auto;
+        }
+
+.vertical-menu a {
+    background-color: #eee; /* Grey background color */
+    color: black; /* Black text color */
+    display: block; /* Make the links appear below each other */
+    padding: 12px; /* Add some padding */
+    text-decoration: none; /* Remove underline from links */
+}
+
+.vertical-menu a:hover {
+    background-color: #ccc; /* Dark grey background on mouse-over */
+}
+
+.vertical-menu a.active {
+    background-color: rgb(109, 204, 199);
+    color: white;
+}
+</style>
+</body>
+</html>
