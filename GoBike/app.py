@@ -48,7 +48,8 @@ def chords():
 
 @app.route("/tableau")
 def tableau():
-    return render_template("tableau.html")
+    iframe = "https://public.tableau.com/profile/olivier.brouard#!/vizhome/Tableau-Final-project/Dashboard1"
+    return render_template("tableau.html", iframe=iframe)
 
 @app.route("/sklearn")
 def sklearn():

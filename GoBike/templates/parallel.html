@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<!-- python -m http.server 8087 --bind localhost -->
+
+
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>Linking to Data Table</title> 
+        <!-- http://syntagmatic.github.com/parallel-coordinates/ -->
+        <link rel="stylesheet" type="text/css" href="static/css/pcd_style.css">
+        <link rel="stylesheet" type="text/css" href="static/css/style.css">
+        <script type="text/javascript" src="static/js/d3.min.js"></script>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://bootswatch.com/3/paper/bootstrap.min.css">
+        <!-- <script src="//cdnjs.cloudflare.com/ajax/libs/d3/3.5.5/d3.min.js"></script>
+        -->
+        <script src="static/js/sylvester.js"></script>
+        <script src="static/js/d3.parcoords.js"></script>
+        <script src="static/js/divgrid.js"></script>
+        <script type="text/javascript" src="static/js/index.js"></script>
+    </head>
+
+<body>
+    <div class="container-fluid">
+        <nav class="navbar navbar-default">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#myNavbar-1" aria-exanded="false">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                        <a class="navbar-brand" href="/"><img src="/static/images/Ford_GoBike_logo.png" width=150px>Data Visualization and Analysis</a>
+                </div>
+                <div class="collapse navbar-collapse" id="myNavbar-1">
+                    <ul class="nav navbar-nav navbar-right">
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                                Menu<span class="caret"></span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a href="/chords">D3 chord diagram</a></li>
+                                <li><a href="/parallel">parallel coordinate diagram</a></li>
+                                <li><a href="/tableau">tableau summary</a></li>
+                                <li><a href="/sklearn">sklearn machine learning</a></li>
+                                <li><a href="/NeuralNetwork">neural network predictive model</a></li>
+                                <li role="separator" class="divider"></li>
+                                <li><a href="/data">data</a></li>
+                            </ul>
+                        </li>
+                        
+                        <li><a href="/process">process</a></li>
+                        <li><a href="/summary">summary</a></li>
+
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <style>
+			body {
+				overflow: auto;
+				margin: 0;
+				font-size: 14px;
+				font-family: 'Raleway', sans-serif;
+				text-align: center;
+				/*font-family: Oswald;*/
+				/*font-family: "Helvetica Neue", Helvetica;*/
+			  }
+		
+			  .vertical-menu {
+				width: 200px; /* Set a width if you like */
+			}
+			
+			.vertical-menu a {
+				background-color: #eee; /* Grey background color */
+				color: black; /* Black text color */
+				display: block; /* Make the links appear below each other */
+				padding: 12px; /* Add some padding */
+				text-decoration: none; /* Remove underline from links */
+			}
+			
+			.vertical-menu a:hover {
+				background-color: #ccc; /* Dark grey background on mouse-over */
+			}
+			
+			.vertical-menu a.active {
+				background-color: rgb(109, 204, 199); /* Add a green color to the "active/current" link */
+				color: white;
+			}
+		
+		  #clickerWrapper {
+			top: 0;
+			z-index: 1;
+			display: block;
+			position: relative;
+			width: 640px;
+			/*padding-top: 5px;*/
+			visibility: auto;
+			text-align: center;
+			margin: 0 auto;
+		  }
+		
+		  #clicker {
+			z-index: 1;
+			display: block;
+			font-family: Oswald;
+			font-size: 36px;
+			font-weight: 300;
+			color: #363636;
+			position: relative;
+			/*width: 80px;*/
+			text-align: center;
+			width: 30%;
+			margin: 0 auto;
+			border: 1px solid;
+			border-color: #363636;
+			cursor: pointer;
+		  }
+		
+		  #progress {
+			z-index: 1;
+			display: block;
+			position: relative;
+			width: 40%;
+			height: 6px;
+			margin: 10px auto;
+			visibility: hidden;
+		  }
+		  
+		  #buttonWrapper{
+			z-index: 1;
+			display: block;
+			font-family: Oswald;
+			font-size: 14px;
+			font-weight: 300;
+			color: #6B6B6B;
+			position: relative;
+			width: 640px;
+			text-align: center;	
+			overflow: hidden;	
+			text-align: center;
+			margin: 0 auto;
+			margin-top: 30px;
+		  }
+		  
+		  #buttonWrapperInner{
+			  position: relative;
+			  width: 300px;
+			  height: 30px;
+			  margin: 0 auto;
+		  }
+		  
+		  
+		  #skip{
+			width: 90px;
+			cursor: pointer;	
+			float: left;	
+			text-align: left;
+		  }
+		  
+		  #reset{
+			width: 110px;
+			cursor: pointer;	
+			float: left;			  
+		  }
+		
+		  #link{
+			width: 100px;
+			cursor: pointer;	
+			float: left;	
+			text-align: right;
+		  }
+		  
+		  line {
+			stroke: #000;
+			stroke-width: 1.px;
+		  }
+		
+		  text {
+			font-size: 10px;
+		  }
+		
+		  .titles{
+			font-size: 14px;
+		  }
+		
+		  .explanation{
+			font-size: 20px;
+			font-weight: 300;
+			text-align: center;
+		  }
+		  
+		  path.chord {
+			fill-opacity: .80;
+		  }
+		  
+		  a {
+			  text-decoration: none;
+			  color: #6B6B6B;
+		  }
+        </style>
+        <div class="row">
+            <div id="menu" class="col-md-2" style="padding:50px; text-align:left">
+                <div class="vertical-menu">
+                        <a href="/">Home</a>
+                        <a href="/tableau">Tableau Data Visualization</a>
+                        <a href="/chords">Chord flow Diagram</a>
+                        <a href="#" class="active">Parallel Coordinate Diagram</a>
+                        <a href="/sklearn">Regression models</a>
+                        <a href="/NeuralNetwork">Neural Network computing</a>
+                </div>
+            </div>
+            <div class="col-md-10" style="padding:50px; text-align:left">
+                <h1>Multidimensional Bike Sharing System Exploration Interface</h1>
+                <h2>San Francisco neighborhoods bike rides flows - June 2018 (selected first 2,500 rides)</h2>
+                <h4>Total Reported Miles: <strong><span id="totalselectedmilesdiv"></span> (<span id="ridesMilesselectedperc"></span> %)</strong></h4>
+
+                <div class="widgets">
+                    <button id="keepSelected">Keep Selected</button>
+                    <button onclick="removeSelectedFunc()"> Reset Selection</button>
+                </div>
+
+                <h4>Total Reported Rides: <strong><span id="totalridescountdiv"></span> (<span id="totalselectedridescountdiv"></span> %)</strong></h4>
+                <h4>Overall Avg Rides Duration: <strong><span id="AvgDuration"></span> minutes</strong></h4>
+
+                <!-- <button onclick="downloadScreenshot()">Download screenshot</button> -->
+
+                <div id="example" class="parcoords"></div>
+                   <p class="caption1">-Drag around axis to begin brush. -Click axis to clear brush. -Double click a label to invert data scaling. -Hover on each line table to highlight.</p>
+                <div id="grid"></div>
+                <p class="caption2">Dataset: https://www.fordgobike.com/</p>
+            </div>
+        </div>
+        <div class="footer">
+            <div class="container-fluid">
+                    <div class="col-md-12">
+                        <div class="authorline">
+                            <p>
+                                Jonathan Ahn, Paco Rosas, Takako Omori, Olivier Brouard  | Bootcamp UCB Data Analytics 2018 |
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.7.3/d3.min.js"></script> -->
+<script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script src="http://netdna.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="http://www.numericjs.com/lib/numeric-1.2.6.js"></script>
+
+<script id="brushing">// quantitative colour scale
+
+var blue_to_red = d3.scale.linear()
+  .domain([1, 4000])
+  .range(["#ff0000", "#0000ff"])
+  .interpolate(d3.interpolateLab);
+  
+
+function numberWithCommas(x) {
+    var parts = x.toString().split(".");
+    parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    return parts.join(".");
+}
+  
+
+
+
+
+
+var color = function(d) { 
+
+console.log("running color");
+
+
+var colorValue = colors[d.start_neighborhood];
+
+if(colorValue === undefined) colorValue = "#B2B2B2";
+
+return colorValue;
+
+};
+
+var colors = {
+  "Alamo Square": ["#2c5985"],
+  "Anza Vista": ["#2d5d88"],
+  "Bernal Heights": ["#2e628c"],
+  "Central Waterfront": ["#2f6690"],
+  "China Basin": ["#306b93"],
+  "Chinatown": ["#317097"],  
+  "Civic Center": ["#32759a"], //
+  "Design District": ["#337a9e"],
+  "Dogpatch": ["#347fa1"],  
+  "Embarcadero": ["#3484a5"], //
+  "Fillmore District": ["#3589a9"],
+  "Financial District": ["#358dad"],
+  "Hayes Valley": ["#3992b0"],
+  "Lower Haight": ["#3d97b3"],
+  "Lower Nob Hill": ["#419cb6"],  //
+  "Mid-Market": ["#45a2b9"],
+  "Mission Bay": ["#4da6bb"],
+  "Mission District": ["#56abbd"],
+  "Mission Dolores": ["#5eafc0"],
+  "Noe Valley": ["#66b4c2"], //
+  "North of the Panhandle": ["#6eb8c5"],
+  "Panhandle": ["#75bcc7"],
+  "Potrero Hill": ["#7dc0c9"],
+  "Rincon Hill": ["#84c5cb"],
+  "South Beach": ["#8cc9cd"], //
+  "South Park": ["#93cdcf"],
+  "South of Market": ["#9bd1d0"],
+  "Tenderloin": ["#a3d6d2"],
+  "The Castro": ["#abdad4"],  
+  "The East Cut": ["#b3dfd6"],  
+  "Western Addition": ["#bce4d8"], 
+  };
+
+
+/*
+var color = function(d) { 
+
+console.log("running color");
+  
+if(d == baselineData)
+{
+ return "#000000";
+}
+else{
+ return blue_to_red(d['bike_id']); 
+}
+};
+*/
+
+var baselineData;
+
+var outer = d3.select('div.grid')
+    // .on('scroll', render);
+
+var parcoords = D3parcoords()("#example")
+  .color(color)
+  .alpha(0.30);
+// load csv file and create the chart
+
+	
+var keepButton = d3.select('#keepSelected')[0][0];
+//var removeButton = d3.select('#removeSelected')[0][0];
+
+var dataCSV = 'static/csv/GoBikeJune2018-cleaned-select.csv';
+
+var allData;
+
+keepButton.onclick = function(){
+	//alert("keepSelected");
+	
+	var filteredData = parcoords.brushed();
+     parcoords.data(filteredData);
+	 parcoords.autoscale();
+     parcoords.render();
+	 return false;
+};
+
+function removeSelectedFunc()
+{
+	//alert("removeSelected");
+      parcoords.data(allData);
+	  parcoords.autoscale();
+      parcoords.render();
+	  return false;
+      
+};
+   
+d3.csv(dataCSV, function(data) {
+
+allData = data;
+
+  parcoords
+    .data(data)
+	.bundlingStrength(0) // set bundling strength
+	.smoothness(0)
+	.bundleDimension("duration_min")
+	.showControlPoints(false)
+	.composite("darken")
+<!--	.hideAxis(["bike_id"]) -->
+	.render()
+	.brushMode("1D-axes")
+    .reorderable()	// enable brushing
+	.mode("queue")
+	.rate(30)
+	.interactive();
+
+	parcoords.svg.selectAll("text")
+    .style("font", "10px Benton, Arial");
+	
+	var foobar = parcoords.svg.selectAll("text.label");
+	
+	parcoords.svg.selectAll("text.label")
+	.attr("transform","translate(0,-10) rotate(0)")
+	.style("font-weight", "bold");
+	
+	 
+  // create data table, row hover highlighting
+   var grid = d3.divgrid();
+
+  var onBrushFunc = function(d) {
+   
+  var formattedD = d.map(
+  function(mapVal){
+  
+  
+  var returnD = {};
+  
+  for(var key in mapVal)
+  {
+	returnD[key] = mapVal[key];
+  }
+  
+  return returnD;
+	 
+  }
+  );
+  
+	//This draws the table
+    d3.select("#grid")
+      .datum(formattedD.slice(0,1000000))
+      .call(grid)	 
+      .selectAll(".row")
+      .on({
+        "mouseover": function(d) { parcoords.highlight([d]) },
+        "mouseout": parcoords.unhighlight
+		
+      });
+	  
+	  
+	  
+	//This updates the values at the top of the page  
+    var totalSelectedmiles = 0;
+	var totalSelectedRidesCount = 0;
+	var totaltripDuration = 0;
+	
+	
+	for(var i in d)
+	{
+		var row = d[i];
+		
+        totalSelectedmiles = totalSelectedmiles+ parseFloat(row.miles);
+		totalSelectedRidesCount++;
+	}
+	
+	
+	for(var i in d)
+	{
+		var row = d[i];
+		
+		var weight = parseFloat(row.miles)/totalSelectedmiles;
+		
+		var Test = parseFloat(row["duration_min"]);
+		
+		var avgDuration = weight*parseFloat(row["duration_min"]);
+		
+		totaltripDuration = totaltripDuration+ avgDuration;
+		
+		
+		
+    }
+	
+	var milesPerc = (totalSelectedmiles/totalMiles)*100;
+	
+	var ridesPerc = (totalSelectedRidesCount/totalRidesCount)*100;
+	
+	//select miles of rides
+	document.getElementById("totalselectedmilesdiv").innerHTML = numberWithCommas(totalSelectedmiles);
+	
+	//select bike ride # count
+	document.getElementById("totalridescountdiv").innerHTML = numberWithCommas(totalSelectedRidesCount);
+	
+	//select trip avg duration
+	document.getElementById("AvgDuration").innerHTML = totaltripDuration.toFixed(1);
+	
+	//select %miles ride of bike ride
+	document.getElementById("ridesMilesselectedperc").innerHTML = milesPerc.toFixed(1);
+	
+	//select %# of bike ride
+	document.getElementById("totalselectedridescountdiv").innerHTML = ridesPerc.toFixed(1);
+	
+	  
+  };
+  
+
+
+   
+   var totalMiles = 0;
+   var totalRidesCount = 0;
+   
+
+   
+   
+   
+	  
+   for(var i in data)
+   {
+   	var row = data[i];
+      totalMiles = totalMiles + parseFloat(row.miles);
+	  totalRidesCount++;
+   }
+   
+   
+   
+   onBrushFunc(data);
+   
+ 
+   
+
+
+	
+ 
+   
+   
+   
+
+  
+  // update data table on brush event
+  parcoords.on("brush", onBrushFunc);
+  //parcoords.on("brush", calcSelectedValues);
+});
+</script>
+
+</body>
+</html>

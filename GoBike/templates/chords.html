@@ -1,17 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
 
-	<head>
-		<meta charset="UTF-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<meta http-equiv="X-UA-Compatible" content="ie=edge">
-		<title>GoBike</title>
-		<link rel="stylesheet" href="/static/css/style.css">
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-		<link rel="stylesheet" href="https://bootswatch.com/3/spacelab/bootstrap.min.css">
-		<script src="http://d3js.org/d3.v3.min.js"></script>
-		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-	</head>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>GoBike</title>
+  <link rel="stylesheet" href="static/css/style.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://bootswatch.com/3/paper/bootstrap.min.css">
+  <script src="http://d3js.org/d3.v3.min.js"></script>
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+	<!-- <link href='http://fonts.googleapis.com/css?family=Oswald:400,300,700' rel='stylesheet' type='text/css'>
+	<link href='http://fonts.googleapis.com/css?family=Raleway' rel='stylesheet' type='text/css'> -->
+	
+	
+</head>
 <body>
 	    <div class="container-fluid">
 				<nav class="navbar navbar-default">
@@ -60,7 +64,7 @@
 						<a href="/NeuralNetwork">Neural Network computing</a>
 				</div>
 			</div>
-			<div id="body" class="col-md-10" style="padding:50px">
+			<div id="body" class="col-md-10" style="padding-left:50px; padding-top:0px; padding-right:50px; padding-bottom:20px">
 				<div id="chart"></div>
 				<div id="clickerWrapper">
 					<div id="progress"></div>
@@ -73,164 +77,164 @@
 						<div id="link" class="sideButton"><a href="https://jjahn0.github.io/Chord/" target="_blank">GO TO SOURCE</a></div>
 					</div>
 				</div>
-            </div>
+			</div>
 		</div>
+	</div>
 		<div class="footer">
 			<div class="container-fluid">
-				<div class="col-md-12">
-					<div class="authorline">
-						<p>
-							Jonathan Ahn, Paco Rosas, Takako Omori, Olivier Brouard  | Bootcamp UCB Data Analytics 2018 |
-						</p>
+					<div class="col-md-12">
+						<div class="authorline">
+							<p>
+								Jonathan Ahn, Paco Rosas, Takako Omori, Olivier Brouard  | Bootcamp UCB Data Analytics 2018 |
+							</p>
+						</div>
 					</div>
 				</div>
 			</div>
 		</div>
-	</div>
-	<script src="{{ url_for('static', filename='js/chords.js') }}"></script>
-	<!-- <script src="/static/js/chords.js"></script> -->
+	<script src="static/js/chords.js"></script>
 	<style>
-	body {
-		overflow: auto;
-		margin: 0;
-		font-size: 14px;
-		font-family: 'Raleway', sans-serif;
-		text-align: center;
-		/*font-family: Oswald;*/
-		/*font-family: "Helvetica Neue", Helvetica;*/
-  	}
-
-	  .vertical-menu {
-		width: 200px; /* Set a width if you like */
-	}
-	
-	.vertical-menu a {
-		background-color: #eee; /* Grey background color */
-		color: black; /* Black text color */
-		display: block; /* Make the links appear below each other */
-		padding: 12px; /* Add some padding */
-		text-decoration: none; /* Remove underline from links */
-	}
-	
-	.vertical-menu a:hover {
-		background-color: #ccc; /* Dark grey background on mouse-over */
-	}
-	
-	.vertical-menu a.active {
-		background-color: rgb(109, 204, 199); /* Add a green color to the "active/current" link */
-		color: white;
-	}
-
-  #clickerWrapper {
-    top: 0;
-    z-index: 1;
-    display: block;
-    position: relative;
-    width: 640px;
-    /*padding-top: 5px;*/
-    visibility: auto;
-text-align: center;
-margin: 0 auto;
-  }
-
-  #clicker {
-    z-index: 1;
-    display: block;
-    font-family: Oswald;
-    font-size: 36px;
-    font-weight: 300;
-    color: #363636;
-    position: relative;
-    /*width: 80px;*/
-    text-align: center;
-    width: 30%;
-    margin: 0 auto;
-    border: 1px solid;
-    border-color: #363636;
-    cursor: pointer;
-  }
-
-  #progress {
-    z-index: 1;
-    display: block;
-    position: relative;
-    width: 40%;
-    height: 6px;
-    margin: 10px auto;
-    visibility: hidden;
-  }
-  
-  #buttonWrapper{
-    z-index: 1;
-    display: block;
-    font-family: Oswald;
-    font-size: 14px;
-    font-weight: 300;
-    color: #6B6B6B;
-    position: relative;
-    width: 640px;
-    text-align: center;	
-    overflow: hidden;	
-text-align: center;
-margin: 0 auto;
-margin-top: 30px;
-  }
-  
-  #buttonWrapperInner{
-      position: relative;
-      width: 300px;
-      height: 30px;
-      margin: 0 auto;
-  }
-  
-  
-  #skip{
-    width: 90px;
-    cursor: pointer;	
-    float: left;	
-    text-align: left;
-  }
-  
-  #reset{
-    width: 110px;
-    cursor: pointer;	
-    float: left;			  
-  }
-
-  #link{
-    width: 100px;
-    cursor: pointer;	
-    float: left;	
-    text-align: right;
-  }
-  
-  line {
-    stroke: #000;
-    stroke-width: 1.px;
-  }
-
-  text {
-    font-size: 10px;
-  }
-
-  .titles{
-    font-size: 14px;
-  }
-
-  .explanation{
-    font-size: 20px;
-    font-weight: 300;
-    text-align: center;
-  }
-  
-  path.chord {
-    fill-opacity: .80;
-  }
-  
-  a {
-      text-decoration: none;
-      color: #6B6B6B;
-  }
-	</style>
+			body {
+				overflow: auto;
+				margin: 0;
+				font-size: 14px;
+				font-family: 'Raleway', sans-serif;
+				text-align: center;
+				/*font-family: Oswald;*/
+				/*font-family: "Helvetica Neue", Helvetica;*/
+			  }
+		
+			  .vertical-menu {
+				width: 200px; /* Set a width if you like */
+			}
+			
+			.vertical-menu a {
+				background-color: #eee; /* Grey background color */
+				color: black; /* Black text color */
+				display: block; /* Make the links appear below each other */
+				padding: 12px; /* Add some padding */
+				text-decoration: none; /* Remove underline from links */
+			}
+			
+			.vertical-menu a:hover {
+				background-color: #ccc; /* Dark grey background on mouse-over */
+			}
+			
+			.vertical-menu a.active {
+				background-color: rgb(109, 204, 199); /* Add a green color to the "active/current" link */
+				color: white;
+			}
+		
+		  #clickerWrapper {
+			top: 0;
+			z-index: 1;
+			display: block;
+			position: relative;
+			width: 640px;
+			/*padding-top: 5px;*/
+			visibility: auto;
+			text-align: center;
+			margin: 0 auto;
+		  }
+		
+		  #clicker {
+			z-index: 1;
+			display: block;
+			font-family: Oswald;
+			font-size: 36px;
+			font-weight: 300;
+			color: #363636;
+			position: relative;
+			/*width: 80px;*/
+			text-align: center;
+			width: 30%;
+			margin: 0 auto;
+			border: 1px solid;
+			border-color: #363636;
+			cursor: pointer;
+		  }
+		
+		  #progress {
+			z-index: 1;
+			display: block;
+			position: relative;
+			width: 40%;
+			height: 6px;
+			margin: 10px auto;
+			visibility: hidden;
+		  }
+		  
+		  #buttonWrapper{
+			z-index: 1;
+			display: block;
+			font-family: Oswald;
+			font-size: 14px;
+			font-weight: 300;
+			color: #6B6B6B;
+			position: relative;
+			width: 640px;
+			text-align: center;	
+			overflow: hidden;	
+			text-align: center;
+			margin: 0 auto;
+			margin-top: 30px;
+		  }
+		  
+		  #buttonWrapperInner{
+			  position: relative;
+			  width: 300px;
+			  height: 30px;
+			  margin: 0 auto;
+		  }
+		  
+		  
+		  #skip{
+			width: 90px;
+			cursor: pointer;	
+			float: left;	
+			text-align: left;
+		  }
+		  
+		  #reset{
+			width: 110px;
+			cursor: pointer;	
+			float: left;			  
+		  }
+		
+		  #link{
+			width: 100px;
+			cursor: pointer;	
+			float: left;	
+			text-align: right;
+		  }
+		  
+		  line {
+			stroke: #000;
+			stroke-width: 1.px;
+		  }
+		
+		  text {
+			font-size: 10px;
+		  }
+		
+		  .titles{
+			font-size: 14px;
+		  }
+		
+		  .explanation{
+			font-size: 20px;
+			font-weight: 300;
+			text-align: center;
+		  }
+		  
+		  path.chord {
+			fill-opacity: .80;
+		  }
+		  
+		  a {
+			  text-decoration: none;
+			  color: #6B6B6B;
+		  }
+</style>
 </body>
 </html>

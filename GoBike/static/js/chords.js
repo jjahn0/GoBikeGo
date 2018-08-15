@@ -372,7 +372,7 @@ function Draw3(){
 	/*First disable click event on clicker button*/
 	stopClicker();
 
-	var arcDelay = [0,1,1.5,2,4,9,16,20,24,28,30,31,32,33,34,35,36,37,38,39,40,41,42,43,47,48,49,50,51,52,55];
+	var arcDelay = [0,0.5,1,2,4,5,10,12,13,15,17,19,21,23,24,25,26,27,28,29,30,31,32,33,37,38,39,40,41,42,45];
 	/*Show and run the progressBar*/
 	runProgressBar(time=700*(arcDelay[(arcDelay.length-1)]+1));	
 		
@@ -403,27 +403,29 @@ function Draw3(){
 	.selectAll("text").style("opacity", 1);
 
 	/*Change the text of the top section inside the circle accordingly*/
-	/*HTC*/
+	/*mostly 2%*/
 	changeTopText(newText = "Many neighborhoods had 2% or less outgoing bike traffic",
 		loc = 3/2, delayDisappear = 0, delayAppear = arcDelay[2]);
-	/*LG*/
-	changeTopText(newText = "A popular destination, Rincon Hill only had 1.758% of outgoing bike rides",
-		loc = 3/2, delayDisappear = (arcDelay[4]-1), delayAppear = arcDelay[4]);
-	/*Samsung*/
+	/*South of Markey*/
 	changeTopText(newText = "South of Market has the largest outgoing traffic by far, with 25.4% of GoBike users orginating from there",
 		loc = 3/2, delayDisappear = (arcDelay[5]-1), delayAppear = arcDelay[5]);
-	/*Sony*/
-	changeTopText(newText = "Financial District 5.789%",
-		loc = 2/2, delayDisappear = (arcDelay[6]-1), delayAppear = arcDelay[6]);
-	/*Sony*/
-	changeTopText(newText = "Mission District 8.918%",
-		loc = 2/2, delayDisappear = (arcDelay[7]-1), delayAppear = (arcDelay[7]));
-	/*Sony*/
-	changeTopText(newText = "Embarcadero 7.028%",
-		loc = 2/2, delayDisappear = (arcDelay[9]-1), delayAppear = (arcDelay[9]));
-	/*Sony*/
+
+	for(var i=6; i < 11; i++){
+		changeTopText(newText = NameProvider[i] + " " +  matrix[i].reduce((a,b)=>a+b,0).toFixed(4) + "%",
+			loc = 2/2, delayDisappear = (arcDelay[i]-1), delayAppear = arcDelay[i]);
+	}
+
+	changeTopText(newText = "Outside of the top 5 neighborhoods, the other 26 was less than 1/2 the total output",
+			loc = 2/2, delayDisappear = (arcDelay[11]-1), delayAppear = arcDelay[11]);
+	
+
 	changeTopText(newText = "Mission Bay 12.1%",
 		loc = 2/2, delayDisappear = (arcDelay[23]-1), delayAppear = (arcDelay[23]));
+
+	changeTopText(newText = "South of Market, Mission Bay, Mission District, and Embarcadero, combined accounted for more than half the total outgoing bikes",
+
+		loc = 2/2, delayDisappear = (arcDelay[24]-1), delayAppear = (arcDelay[24]));
+	
 	/*100%*/
 	changeTopText(newText = "Together that sums up to 100%",
 		loc = 1/2, delayDisappear = (arcDelay[29]-1), delayAppear = arcDelay[29]);		
@@ -433,8 +435,10 @@ function Draw3(){
 	
 	/*Change the text of the bottom section inside the circle accordingly*/
 	/*Other*/
-	changeBottomText(newText = "These four neighborhoods, SOMA, Mission Bay, Mission District, and Embarcadero, combined accounted for more than half the total outgoing bikes",
-		loc = 1/2, delayDisappear = (arcDelay[23]), delayAppear = (arcDelay[23]-1), yloc=-20);	
+	// changeBottomText(newText = "SOMA, Mission Bay, Mission District, and Embarcadero, combined accounted for more than half the total outgoing bikes",
+	// 	loc = 1/2, delayDisappear = (arcDelay[24]-1), delayAppear = (arcDelay[24]), yloc=-20);
+	// changeBottomText(newText = "Therefor, the other 26 neighborhoods make up less then half the total outgoing bike traffic",
+	// 	loc = 2/2, delayDisappear = (arcDelay[15]-1), delayAppear = (arcDelay[15]));
 	/*Chord intro*/
 	changeBottomText(newText = "Now we're going to look at how these GoBike flowed from one neighborhood to another neighborhood",
 		loc = 1/2, delayDisappear = (arcDelay[29]-1), delayAppear = arcDelay[30]);	
@@ -451,7 +455,7 @@ function Draw4(){
 	/*Show and run the progressBar*/
 	runProgressBar(time=700*2);	
 	
-	/*Samsung and Nokia intro text*/
+	/*SOMA - South Park intro text*/
 	changeTopText(newText = "First, let's only look at the GoBike riders that started from SOMA with a specific destination",
 		loc = 1/2, delayDisappear = 0, delayAppear = 1, finalText = true);
 		
@@ -580,7 +584,7 @@ function Draw7(){
 	changeTopText(newText = "These 0.00375% riders travel back to SOMA, but by following the chord we can see the flow from SOMA is far greater",
 		loc = 1/2, delayDisappear = 9, delayAppear = 10, finalText = true);
 		
-	/*Stop the color changing on the Samsung side*/
+	/*Stop the color changing on the South of Market side*/
 	d3.selectAll(".SouthofMarkettoSouthPark")
 		.transition().duration(700)
 		.attr("fill", colors[5])
@@ -591,8 +595,8 @@ function Draw7(){
 	function repeat() {
 		d3.selectAll(".SouthParktoSouthofMarket")
 			.transition().duration(700)
-			.attr("fill", "#99D2E9")
-			.style('stroke', "#99D2E9")
+			.attr("fill", "#77ec20")
+			.style('stroke', "#77ec20")
 			.transition().duration(700)
 			.attr("fill", colors[25])
 			.style("stroke", colors[25])
@@ -616,7 +620,7 @@ function Draw8(){
 	changeTopText(newText = "Therefore, the chord is the color of SOMA orange, since SOMA has the higher net average from the exchange of bikes between South Park and SOMA",
 		loc = 1/2, delayDisappear = 9, delayAppear = 10, finalText = true);
 		
-	/*Stop the colour changing on the Nokia side*/
+	/*Stop the colour changing on the South Park side*/
 	d3.selectAll(".SouthParktoSouthofMarket")
 		.transition().duration(700)
 		.attr("fill", colors[25])
@@ -635,11 +639,11 @@ function Draw9(){
 	runProgressBar(time=700*20);	
 	
 	/*Samsung Loyal text*/
-	changeTopText(newText = "There are also GoBike users that stay within their given neighborhood",
+	changeTopText(newText = "There are also GoBike users that begin and end their journies in the same neighborhood",
 		loc = 4/2, delayDisappear = 0, delayAppear = 1, finalText = false, xloc=50, w=300);
-	changeTopText(newText = "These short distance riders are represented by the hills at each neighborhood",
+	changeTopText(newText = "These riders are represented by the hills at each neighborhood",
 		loc = 3/2, delayDisappear = 9, delayAppear = 10, finalText = false, xloc=50, w=300);
-	changeTopText(newText = "Basically a chord beginning and ending on itself",
+	changeTopText(newText = "These are chords that begin and end on itself",
 		loc = 2/2, delayDisappear = 18, delayAppear = 19, finalText = true, xloc=50, w=300);
 		
 	/*Remove the arcs*/
@@ -720,7 +724,7 @@ function Draw10(){
 		changeTopText(newText = "That is nearly 25% of GoBike users who start from Embarcadero do not leave the area",
 		loc = 7/2, delayDisappear = 9, delayAppear = 10, finalText = true);
 		
-	/*Show only the Nokia Loyal arc*/
+	/*Show only the inner Embarcadero arc*/
 	var arcEmbarcadero = d3.svg.arc()
 				.innerRadius(innerRadius)
 				.outerRadius(outerRadius)
@@ -735,25 +739,26 @@ function Draw10(){
 		.attr("fill", colors[9]);	
 
 	/*Repeatedly let an arc change colour*/		
-	repeat();
 	
 	d3.selectAll(".arcEmbarcadero")
 		.transition().duration(700)
-		.attr("fill", colors[5])
-		.style("stroke", colors[5]);
+		.attr("fill", colors[9])
+		.style("stroke", colors[9]);
+
+	repeat();
 
 	function repeat() {
 		d3.selectAll(".arcEmbarcadero")
 			.transition().duration(700)
-			.attr("fill", "#99D2E9")
-			.style('stroke', "#99D2E9")
+			.attr("fill", "#9900e5")
+			.style('stroke', "#9900e5")
 			.transition().duration(700)
 			.attr("fill", colors[9])
 			.style("stroke", colors[9])
 			.each("end", repeat);
 	};
 	
-	/*Show only the Nokia loyal chord*/
+	/*Show only the inner Embarcadero chord*/
 	chords.transition().duration(2000)
 		.attr("opacity", function(d, i) { 
 			if(d.source.index == 9 && d.target.index == 9) {return opacityValueBase;}
@@ -786,13 +791,13 @@ function Draw11(){
 	runProgressBar(time=700*2);	
 	
 	changeTopText(newText = "Here are all the chords showing the influx of riders to South Park",
-		loc = 3/2, delayDisappear = 0, delayAppear = 1, finalText = true, xloc=80, w=200);
+		loc = 7/2, delayDisappear = 0, delayAppear = 1, finalText = true, xloc=120, w=200);
 		
-	/*Remove the SouthPark Arc*/
-	d3.selectAll(".SouthParkArc")
+	/*Remove the Embarcadero Arc*/
+	d3.selectAll(".arcEmbarcadero")
 		.transition().duration(1000)
 		.attr("opacity", 0)
-		.each("end", function() {d3.selectAll(".SouthParkArc").remove();});
+		.each("end", function() {d3.selectAll(".arcEmbarcadero").remove();});
 			
 	/*Only show the chords of South Park*/
 	chords.transition().duration(2000)
@@ -829,13 +834,18 @@ function Draw12(){
 	/*First disable click event on clicker button*/
 	stopClicker();
 	/*Show and run the progressBar*/
-	runProgressBar(time=700*11);	
+	runProgressBar(time=700*11);
+	
+	var ToSouthPark = 0;
+	for(var i=0; i<30; i++){
+		ToSouthPark = ToSouthPark + matrix[i][25]
+	}
 
-	changeTopText(newText = "A unique aspect of South Park is the clear disparity between inbound and outbound GoBike riders: all chords leading to South Park are different",
-		loc = 3/2, delayDisappear = 0, delayAppear = 1, finalText = false, xloc=80, w=300);
-	changeTopText(newText = "South Park has the highest influx of bikes. " + 
-							"And becomes a major location for re-distribution of GoBikes",
-		loc = 3/2, delayDisappear = 9, delayAppear = 10, finalText = true, xloc=80, w=300);
+	changeTopText(newText = "South Park is an interesting case "+
+						"with the most significant incoming GoBike riders but little outgoing",
+		loc = 7/2, delayDisappear = 0, delayAppear = 1, finalText = true, xloc=120, w=200);
+	changeTopText(newText = "South Park as the destination made up "+ ToSouthPark.toFixed(1) +"% of all outgoing rides",
+		loc = 7/2, delayDisappear = 9, delayAppear = 10, finalText = true, xloc=120, w=200);
 
 };/*Draw12*/
   
@@ -847,30 +857,27 @@ function Draw13(){
 	/*Show and run the progressBar*/
 	runProgressBar(time=700*11);	
 
-	changeTopText(newText = "The disparity is obvious, especially for chords representing inbound bike flow from the Mission districts and SOMA",
-		loc = 3/2, delayDisappear = 0, delayAppear = 1, finalText = false, xloc=-80, w=300);
-	changeTopText(newText = "This means South Park is always well supplied on outbound bikes",
-		loc = 3/2, delayDisappear = 9, delayAppear = 10, finalText = true, xloc=-80, w=300);	
+	changeTopText(newText = "One reason, commuters from CalTrain from South of Market",
+		loc = 1/2, delayDisappear = 0, delayAppear = 1, finalText = false, xloc=-60, w=300);
+	changeTopText(newText = "And commuters from Mission district neighborhoods",
+		loc = 7/2, delayDisappear = 9, delayAppear = 10, finalText = true, xloc=100, w=200);		
 	
-	/*Repeatedly let specific chords change colour*/
-	repeat();
-	
-	function repeat() {
-		chords
-			.transition().duration(1000)
-			.style("opacity",function (d){
-				if(d.source.index == 25) {
-					if(d.target.index == 25 || d.target.index == 5) {return opacityValueBase;}
-					else {return 0.2;}
-				} else {return 0;}
-			})
-			.transition().duration(1000)
-			.style("opacity",function (d){
-				if(d.source.index == 5) {return opacityValueBase;}
-				else {return 0;}
-			})
-			.each("end", repeat);
-	};	
+	/*Repeatedly let specific chords change opacity*/
+
+	chords.transition().duration(700)
+		.attr("opacity", function(d, i) { 
+			if(d.source.index == 5 && d.target.index == 25) {return opacityValueBase;}
+			else if(d.source.index !== 5 && d.target.index == 25) {return 0.2;}
+			else {return 0;}
+		})
+		.transition().delay(700*9).duration(700)
+		.attr("opacity", function(d, i) { 
+			if(d.source.index == 7 && d.target.index == 25) {return opacityValueBase;}
+			else if(d.source.index == 23 && d.target.index == 25) {return opacityValueBase;}
+			else if(d.source.index !== 7 && d.target.index == 25 ||
+					d.source.index !== 23 && d.target.index == 25) {return 0.2;}
+			else {return 0;}
+		});
 };/*Draw13*/
 
 

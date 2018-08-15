@@ -66,12 +66,12 @@
         <div class="row">
             <div id="menu" class="col-md-2" style="padding:50px; text-align:left">
                 <div class="vertical-menu">
-                        <a href="/">Home</a>
-                        <a href="/tableau">Tableau Data Visualization</a>
-                        <a href="/chords">Chord flow Diagram</a>
-                        <a href="/parallel">Parallel Coordinate Diagram</a>
-                        <a href="/sklearn">Regression models</a>
-                        <a href="#" class="active">Neural Network computing</a>
+                    <a href="/">Home</a>
+                    <a href="/tableau">Tableau Data Visualization</a>
+                    <a href="/chords">Chord flow Diagram</a>
+                    <a href="/parallel">Parallel Coordinate Diagram</a>
+                    <a href="/sklearn">Regression models</a>
+                    <a href="#" class="active">Neural Network computing</a>
                 </div>
             </div>
             <div id="menu" class="col-md-10" style="padding:50px; text-align:left">
@@ -82,70 +82,76 @@
                     <p>Correlation analysis between all the variables:</p>
                 </div>
                 <div class="col-md-10" style="padding:50px">
-                        <div id="intro" class="imgbox">
-                            <img class="center-fit" src="static/images/correlation_analysis.png">
-                        </div>
-                </div>
-            <div class="row">
-                <div class="col-md-2"></div>
-                <div class="col-md-5" style="padding:50px">
-                        <div id="intro" class="imgbox">
-                            <img class="center-fit" src="static/images/hour_vs_usage_temp_ranges.png">
-                        </div>
-                </div>
-                <div class="col-md-5" style="padding:50px">
-                        <div id="intro" class="imgbox">
-                            <img class="center-fit" src="static/images/hour_vs_usage_wkday_wkend.png">
-                        </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-2"></div>
-                <div class="col-md-10" style="padding:50px; text-align:left">
-                        <p style="color:darkblue">Neural Network details:</p>
-                        <p>Data was converted from a time series (each row represents a date with a periodicity of one hour) into a supervised learning problem, where each row (observation) included the values for the previous observation. After that, a neural network with a hidden LSTM (Long Short Term Memory) layer was used to build the model from the training data. LSTMs are a type of Recurrent Neural Network. This is a useful approach to time series forecasting with multiple variables (pressure, temperature, etc. in our case).</p>
-                        <br>
-                        <p style="color:darkblue">Notes:</p>
-                        <ul>
-                            <li>Data cleaning was vital for good results</li>
-                            <li>For instance, added average values for pressure and temperature for missing values and remove rows with duplicated indexes (important since these are timestamps)</li>
-                            <li>For simplicity, weather was categorized into rain/no rain</li>
-                            <li>An integer for the day of the week was added to the dataset</li>
-                        </ul>
-                        <br>
-                        <p style="color:darkblue">Possible improvements:</p>
-                        <ul>
-                            <li>Further neural network tuning (nodes, layers, batches, etc.)</li>
-                            <li>Fill missing rows (timestamps missing)</li>
-                            <li>OneHot Encode for the day of the week, instead of using integers</li>
-                            <li>We are not considering seasonality, day (of the week), hour. This could be addressed with <u>Seasonal Adjustment</u>, or Deseasonalizing.</li>
-                        </ul>
+                    <div id="intro" class="imgbox">
+                        <img class="center-fit" src="static/images/correlation_analysis.png">
                     </div>
                 </div>
+            </div>
+        </div>
+        <!-- end of row 1 -->
+        <div class="row">
+            <div class="col-md-2"></div>
+            <div class="col-md-5" style="padding:50px">
+                    <div id="intro" class="imgbox">
+                        <img class="center-fit" src="static/images/hour_vs_usage_temp_ranges.png">
+                    </div>
+            </div>
+            <div class="col-md-5" style="padding:50px">
+                    <div id="intro" class="imgbox">
+                        <img class="center-fit" src="static/images/hour_vs_usage_wkday_wkend.png">
+                    </div>
             </div>
         </div>
         <div class="row">
             <div class="col-md-2"></div>
             <div class="col-md-10" style="padding:50px; text-align:left">
-                    <br>
-                    <p style="color:darkblue">TEST RESULTS</p>
-                    <p>4 weeks of training data</p>
-                    <p>1 week of test and validation data</p>
-                    <p>4 Inputs (per hour):</p>
-                    <ul>
-                        <li>Weekday (integer)</li>
-                        <li>Pressure</li>
-                        <li>Rain (yes/no)</li>
-                        <li>Temperature</li>
-                    </ul>
-                    <p>1 Output:</p>
-                    <ul>
-                        <li>Bike Usage Count (per hour)</li>
-                    </ul>
-                    <br>
-                    <h3>Test RMSE: 137.026</h3>
-                    <p>Root Mean Square Error: If <img src="/static/images/yi_cir.png"> is the predicted value of the <i><b>i</b></i>-th sample, and <i><b>Yi</b></i> is the corresponding true value, then the mean squared error (MSE) estimated over <i><b>n-samples</b></i> is defined as:</p>
+                <p style="color:darkblue">Neural Network details:</p>
+                <p>Data was converted from a time series (each row represents a date with a periodicity of one hour) into a supervised learning problem, where each row (observation) included the values for the previous observation. After that, a neural network with a hidden LSTM (Long Short Term Memory) layer was used to build the model from the training data. LSTMs are a type of Recurrent Neural Network. This is a useful approach to time series forecasting with multiple variables (pressure, temperature, etc. in our case).</p>
+                <br>
+                <p style="color:darkblue">Notes:</p>
+                <ul>
+                    <li>Data cleaning was vital for good results</li>
+                    <li>For instance, added average values for pressure and temperature for missing values and remove rows with duplicated indexes (important since these are timestamps)</li>
+                    <li>For simplicity, weather was categorized into rain/no rain</li>
+                    <li>An integer for the day of the week was added to the dataset</li>
+                </ul>
+                <br>
+                <p style="color:darkblue">Possible improvements:</p>
+                <ul>
+                    <li>Further neural network tuning (nodes, layers, batches, etc.)</li>
+                    <li>Fill missing rows (timestamps missing)</li>
+                    <li>OneHot Encode for the day of the week, instead of using integers</li>
+                    <li>We are not considering seasonality, day (of the week), hour. This could be addressed with <u>Seasonal Adjustment</u>, or Deseasonalizing.</li>
+                </ul>
             </div>
+        </div>
+        <!-- end of row 2 -->
+        <div class="row">
+            <div class="col-md-2"></div>
+            <div class="col-md-10" style="padding:50px; text-align:left">
+                <br>
+                <p style="color:darkblue">TEST RESULTS</p>
+                <p>4 weeks of training data</p>
+                <p>1 week of test and validation data</p>
+                <p>4 Inputs (per hour):</p>
+                <ul>
+                    <li>Weekday (integer)</li>
+                    <li>Pressure</li>
+                    <li>Rain (yes/no)</li>
+                    <li>Temperature</li>
+                </ul>
+                <p>1 Output:</p>
+                <ul>
+                    <li>Bike Usage Count (per hour)</li>
+                </ul>
+                <br>
+                <h3>Test RMSE: 137.026</h3>
+                <p>Root Mean Square Error: If <img src="/static/images/yi_cir.png"> is the predicted value of the <i><b>i</b></i>-th sample, and <i><b>Yi</b></i> is the corresponding true value, then the mean squared error (MSE) estimated over <i><b>n-samples</b></i> is defined as:</p>
+            </div>
+        </div>
+        <!-- end of row 3 -->
+    
+        <div class="row">
             <div class="col-md-2"></div>
             <div class="col-md-10" style="padding:50px; text-align:left">
                     <div id="intro" class="imgbox">
@@ -153,38 +159,38 @@
                     </div>
                     <p>Normalized RMSE (RMSE/(y_max-y_min)): 0.160</p>
                     <p style="color:darkblue">Training and test loss:</p>
-
-            </div>
-            <div class="row">
-                    <div class="col-md-2"></div>
-                    <div class="col-md-10" style="padding:50px; text-align:left">
-                            <p style="color:darkblue">Training and test loss:</p>
-                            <div id="intro" class="imgbox">
-                                <img class="center-fit" src="static/images/training_test_loss.png">
-                            </div>
-                    </div>
-                    <div class="col-md-2"></div>
-                    <div class="col-md-10" style="padding:50px; text-align:left">
-                        <div id="intro" class="imgbox">
-                            <img class="center-fit" src="static/images/Prediction_VS_Data_4weeksTraining_1weekPrediction_weekdayNotHotEncoded.png">
-                        </div>
-                    </div>
             </div>
         </div>
-        
-        <div class="footer">
-            <div class="container-fluid">
-                    <div class="col-md-12">
-                        <div class="authorline">
-                            <p>
-                                Jonathan Ahn, Paco Rosas, Takako Omori, Olivier Brouard  | Bootcamp UCB Data Analytics 2018 |
-                            </p>
-                        </div>
-                    </div>
+        <!-- end of row 4 -->
+
+        <div class="row">
+            <div class="col-md-2"></div>
+            <div class="col-md-10" style="padding:50px; text-align:left">
+                <p style="color:darkblue">Training and test loss:</p>
+                <div id="intro" class="imgbox">
+                    <img class="center-fit" src="static/images/training_test_loss.png">
+                </div>
+            </div>
+            <div class="col-md-2"></div>
+            <div class="col-md-10" style="padding:50px; text-align:left">
+                <div id="intro" class="imgbox">
+                    <img class="center-fit" src="static/images/Prediction_VS_Data_4weeksTraining_1weekPrediction_weekdayNotHotEncoded.png">
                 </div>
             </div>
         </div>
     </div>
+    <div class="footer">
+        <div class="container-fluid">
+            <div class="col-md-12">
+                <div class="authorline">
+                    <p>
+                        Jonathan Ahn, Paco Rosas, Takako Omori, Olivier Brouard  | Bootcamp UCB Data Analytics 2018 |
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.7.3/d3.min.js"></script>
 <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>

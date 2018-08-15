@@ -18,9 +18,9 @@
         }
         iframe {
             max-width: 2000px !important;
-            max-height: 2000px !important;
-            width: 1400px !important;
-            height: 1100px !important;
+            max-height: 1400px !important;
+            width: 1080px !important;
+            height: 890px !important;
         }
     </style>
     <div class="container-fluid">
@@ -71,8 +71,12 @@
                 </div>
             </div>
             <div class="col-md-10" style="padding:50px">
+                <a href="/tableau/1">dash 1</a>
+                <a href="/tableau/2">dash 2</a>
+                <a href="/tableau/3">dash 3</a>
+                <a href="/tableau/4">dash 4</a>
                 <div class="tableau"></div>
-                    <iframe class="tableau" src="https://public.tableau.com/profile/olivier.brouard#!/vizhome/Tableau-Final-project/Dashboard4"></iframe>
+                    <iframe class="embed-responsive-item" src={{ iframe }} seamless="seamless" scrolling="no" frameborder="0" allowtransparency="true"></iframe>
                 </div>
             </div>
         </div>
