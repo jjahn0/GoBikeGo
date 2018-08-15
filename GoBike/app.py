@@ -46,9 +46,15 @@ def parallel():
 def chords():
     return render_template("chords.html")
 
-@app.route("/tableau")
+@app.route("/tableau", methods=["GET", "POST"])
 def tableau():
-    iframe = "https://public.tableau.com/profile/olivier.brouard#!/vizhome/Tableau-Final-project/Dashboard1"
+    page = request.args.get('page')
+    tableau = "https://public.tableau.com/profile/olivier.brouard#!/vizhome/Tableau-Final-project/Dashboard"
+    if (page != None):
+        iframe = tableau + page
+    else:
+        iframe = tableau + "1"
+
     return render_template("tableau.html", iframe=iframe)
 
 @app.route("/sklearn")
