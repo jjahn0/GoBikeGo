@@ -502,7 +502,7 @@ function Draw5(){
 	runProgressBar(time=700*2);	
 	
 	/*Samsung and Nokia text*/
-	changeTopText(newText = "On the upper right, touching the arc of SOMA, we can see that the chord runs from 0% to almost 7%. Which is a thickness spanning 7%",
+	changeTopText(newText = "On the upper right, touching the arc of SOMA, the chord runs from 0% to almost 7%. Which is a thickness spanning 7%",
 		loc = 1/2, delayDisappear = 0, delayAppear = 1, finalText = true);
 	
     /*Make the non Samsung & Nokia arcs less visible*/
@@ -549,7 +549,7 @@ function Draw6(){
 	runProgressBar(time=700*2);	
 	
 	/*Samsung and Nokia text*/
-	changeTopText(newText = "These 7% of the GoBike riders originate from South of Market and by following the chord we can see their destination, which in this case, is South Park",
+	changeTopText(newText = "These 7% of the GoBike riders originate from South of Market with their final destination being South Park",
 		loc = 1/2, delayDisappear = 0, delayAppear = 1, finalText = true);
 
 	/*Show only the Samsung Nokia part at Nokia*/
@@ -579,9 +579,9 @@ function Draw7(){
 	runProgressBar(time=700*11);	
 	
 	/*Samsung and Nokia text*/
-	changeTopText(newText = "At the South Park side, the arc is much thinner, only spanning 0.00375% (of return distrubution flow)",
+	changeTopText(newText = "At the South Park side, the arc is much thinner, only spanning 0.00375%",
 		loc = 1/2, delayDisappear = 0, delayAppear = 1);
-	changeTopText(newText = "These 0.00375% riders travel back to SOMA, but by following the chord we can see the flow from SOMA is far greater",
+	changeTopText(newText = "These 0.00375% riders travel back to SOMA, but by following the chord we can see incoming bike rides from SOMA is far greater",
 		loc = 1/2, delayDisappear = 9, delayAppear = 10, finalText = true);
 		
 	/*Stop the color changing on the South of Market side*/
@@ -719,9 +719,10 @@ function Draw10(){
 	/*Show and run the progressBar*/
 	runProgressBar(time=700*11);
 	
-	changeTopText(newText = "1.741% of Embarcadero riders is the highest range of riders who stay put",
+	changeTopText(newText = "1.741% of Embarcadero riders is the highest range of riders who stay within the neighborhood",
 		loc = 7/2, delayDisappear = 0, delayAppear = 1);
-		changeTopText(newText = "That is nearly 25% of GoBike users who start from Embarcadero do not leave the area",
+		changeTopText(newText = "That is nearly 25% of GoBike users who start from Embarcadero do not leave the neighborhood "+
+								"and often return to the same starting point",
 		loc = 7/2, delayDisappear = 9, delayAppear = 10, finalText = true);
 		
 	/*Show only the inner Embarcadero arc*/
@@ -842,7 +843,7 @@ function Draw12(){
 	}
 
 	changeTopText(newText = "South Park is an interesting case "+
-						"with the most significant incoming GoBike riders but little outgoing",
+						"with the largest disparity between incoming vs outgoing bikes",
 		loc = 7/2, delayDisappear = 0, delayAppear = 1, finalText = true, xloc=120, w=200);
 	changeTopText(newText = "South Park as the destination made up "+ ToSouthPark.toFixed(1) +"% of all outgoing rides",
 		loc = 7/2, delayDisappear = 9, delayAppear = 10, finalText = true, xloc=120, w=200);
@@ -857,9 +858,9 @@ function Draw13(){
 	/*Show and run the progressBar*/
 	runProgressBar(time=700*11);	
 
-	changeTopText(newText = "One reason, commuters from CalTrain from South of Market",
+	changeTopText(newText = "One reason, commuters from places like closeby South of Market whose travel is generally one way",
 		loc = 1/2, delayDisappear = 0, delayAppear = 1, finalText = false, xloc=-60, w=300);
-	changeTopText(newText = "And commuters from Mission district neighborhoods",
+	changeTopText(newText = "Trend holds for commuters from Mission district neighborhoods",
 		loc = 7/2, delayDisappear = 9, delayAppear = 10, finalText = true, xloc=100, w=200);		
 	
 	/*Repeatedly let specific chords change opacity*/
@@ -888,7 +889,10 @@ function Draw14(){
 	/*Show and run the progressBar*/
 	/*runProgressBar(time=700*2);*/
 
-	changeTopText(newText = "Thank you for staying with me so far!",
+	changeTopText(newText = "Thank you for staying with me so far! " +
+							"The observations to be made and variances to both "+
+							"the structure and utilization of chord diagrams has "+
+							"abundance of potential",
 		loc = 8/2, delayDisappear = 0, delayAppear = 1, finalText = true);		
 	
 	chords.transition().duration(1000)
